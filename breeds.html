@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Каталог пород собак</title>
+    <style>
+        .breed-list {
+            display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px; }
+        .breed-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 200px;
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 5px;
+    }
+        .breed-item {
+  width: 12.5%;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.image-container {
+  width: 100%;
+  text-align: center;
+}
+
+.breed-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.breed-name {
+  text-align: center;
+}
+
+  .breed-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    #searchInput {
+        margin-top: 20px;
+        padding: 5px;
+        width: 200px;
+    }
+</style>
+
+    </head>
+<body>
+<h1>Каталог пород собак</h1>
+
+<input type="text" id="searchInput" placeholder="Поиск по названию породы">
+
+<div class="breed-list" id="breedList"></div>
+
+<script>
+
+    function createBreedListItem(breed, breedName, breedImage) {
+  const listItem = document.createElement('div');
+  listItem.className = 'breed-item';
+
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'image-container';
+
+  const image = document.createElement('img');
+  image.src = breedImage;
+  image.alt = breedName;
+  image.className = 'breed-image';
+
+  const name = document.createElement('p');
+  name.textContent = breedName;
+  name.className = 'breed-name';
+
+  imageContainer.appendChild(image);
+  listItem.appendChild(imageContainer);
+  listItem.appendChild(name);
+
+  return listItem;
+}
+
+
+
+     const breedNames = {
+        affenpinscher: 'Аффенпинчер',
+african: 'Африканская',
+airedale: 'Эрдельтерьер',
+akita: 'Акита',
+appenzeller: 'Аппенцеллер',
+australian: 'Австралийская',
+basenji: 'Басенджи',
+beagle: 'Бигль',
+bluetick: 'Блютик',
+borzoi: 'Борзая',
+bouvier: 'Бувье',
+boxer: 'Боксер',
+brabancon: 'Брабансон',
+briard: 'Бриар',
+buhund: 'Бухунд',
+bulldog: 'Бульдог',
+bullterrier: 'Бультерьер',
+cairn: 'Керн',
+cattledog: 'Каттлдог',
+chihuahua: 'Чихуахуа',
+chow: 'Чау-чау',
+clumber: 'Кламбер',
+cockapoo: 'Кокапу',
+collie: 'Колли',
+coonhound: 'Кунхаунд',
+corgi: 'Корги',
+cotondetulear: 'Котон-де-тулеар',
+dachshund: 'Такса',
+dalmatian: 'Далматин',
+dane: 'Датский дог',
+deerhound: 'Дирхаунд',
+dhole: 'Дхоль',
+dingo: 'Динго',
+doberman: 'Доберман',
+elkhound: 'Элкхаунд',
+entlebucher: 'Энтлебухер',
+eskimo: 'Эскимосская',
+finnish: 'Финская',
+frise: 'Фризе',
+germanshepherd: 'Немецкая овчарка',
+greyhound: 'Грейхаунд',
+groenendael: 'Грюнендал',
+havanese: 'Хаванезе',
+hound: 'Хаунд',
+husky: 'Хаски',
+keeshond: 'Кизхонд',
+kelpie: 'Келпи',
+komondor: 'Комондор',
+kuvasz: 'Кувас',
+labrador: 'Лабрадор',
+leonberg: 'Леонберг',
+lhasa: 'Лхаса',
+malamute: 'Маламут',
+malinois: 'Малинуа',
+maltese: 'Мальтийская',
+mastiff: 'Мастиф',
+mexicanhairless: 'Мексиканская голая',
+mix: 'Метис',
+mountain: 'Горная',
+newfoundland: 'Ньюфаундленд',
+otterhound: 'Оттерхаунд',
+ovcharka: 'Овчарка',
+papillon: 'Папильон',
+pekinese: 'Пекинес',
+pembroke: 'Пемброк',
+pinscher: 'Пинчер',
+pitbull: 'Питбультерьер',
+pointer: 'Пойнтер',
+pomeranian: 'Померанский шпиц',
+poodle: 'Пудель',
+pug: 'Мопс',
+puggle: 'Паггл',
+pyrenees: 'Пиренейская',
+redbone: 'Редбон',
+retriever: 'Ретривер',
+ridgeback: 'Риджбек',
+rottweiler: 'Ротвейлер',
+saluki: 'Салюки',
+samoyed: 'Самоедская',
+schipperke: 'Шипперке',
+schnauzer: 'Шнауцер',
+setter: 'Сеттер',
+sheepdog: 'Шипперке',
+shiba: 'Сиба-ину',
+shihtzu: 'Ши-тцу',
+spaniel: 'Спаниель',
+spitz: 'Шпиц',
+terrier: 'Терьер',
+vizsla: 'Визла',
+weimaraner: 'Веймаранер',
+whippet: 'Виппет',
+yorkshire: 'Йоркширский терьер',
+labradoodle: 'Лабрадудль',
+segugio: 'Сегуджио',
+sharpei: 'Шарпей',
+tervuren:'Тервурен',
+springer:'Спрингер',
+wolfhound:'Волкодав',
+stbernard:'Сенбернард',
+waterdog:'Водяная собака' };
+
+    fetch('https://dog.ceo/api/breeds/list/all')
+        .then(response => response.json())
+        .then(data => {
+            const breedList = document.getElementById('breedList');
+
+            Object.entries(data.message).forEach(([breed, subBreeds]) => {
+  const breedName = breedNames[breed] || breed.charAt(0).toUpperCase() + breed.slice(1);
+  const breedImage = breedImages[breed] || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTax3FyZRUsFRwfdBLhdA0C93MOkgC455pbszGUrxy5pIEXESYy';
+
+  const listItem = createBreedListItem(breed, breedName, breedImage);
+
+  breedList.appendChild(listItem);
+});
+
+
+            function createBreedListItem(breed, breedName, breedImage) {
+  const listItem = document.createElement('div');
+  listItem.className = 'breed-item';
+
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'image-container';
+
+  const image = document.createElement('img');
+  image.src = breedImage;
+  image.alt = breedName;
+  image.className = 'breed-image';
+
+  const name = document.createElement('p');
+  name.textContent = breedName;
+  name.className = 'breed-name';
+
+  imageContainer.appendChild(image);
+  listItem.appendChild(imageContainer);
+  listItem.appendChild(name);
+
+  return listItem;
+}
+        });
+    const breedImages = {
+    affenpinscher: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTax3FyZRUsFRwfdBLhdA0C93MOkgC455pbszGUrxy5pIEXESYy',
+    african: 'https://www.shutterstock.com/image-photo/african-painted-wild-dog-standing-600nw-1203432178.jpg',
+    airedale: 'https://i.pinimg.com/originals/aa/3a/11/aa3a1106baf5b67fd9e79bb0af12dffb.jpg',
+    akita: 'https://i.pinimg.com/originals/39/af/6c/39af6c12921292ebe369422a8343a12a.jpg',
+    appenzeller: 'https://st5.depositphotos.com/1004592/66411/i/1600/depositphotos_664116322-stock-photo-puppy-appenzeller-sennenhund-front-white.jpg',
+    australian: 'https://i.pinimg.com/736x/cb/46/8d/cb468deb43ccff4a5bb1fe32cb0e6b0d.jpg',
+    basenji: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSnKsWt5z0A__QyUHcBNJJOGyG4jDgrAbh4L8UcIACyg&s',
+    beagle: 'https://i.pinimg.com/originals/f1/5d/be/f15dbe2ad24002fbf9f677f94f6941c0.jpg',
+    bluetick: 'https://www.shutterstock.com/image-photo/friendly-dog-sitting-while-looking-600nw-2320404215.jpg',
+    borzoi: 'https://www.purina-arabia.com/sites/default/files/2021-02/BREED%20Hero_0020_borzoi.jpg',
+    bouvier: 'https://media.istockphoto.com/id/160051479/photo/flanders-mountain-dog.jpg?s=612x612&w=0&k=20&c=IBP2XrUhu0As7b0cDMiPdH7fOztG3CaWWH6n9d55ApM=',
+    boxer: 'https://media.istockphoto.com/id/514316126/photo/boxer-sitting-in-front-of-a-white-background.jpg?s=612x612&w=0&k=20&c=6pVD4V8kiSLJcUu3-FTO7zpQUeFg0VCDvGxyhZ1sr9o=',
+    brabancon: 'https://img.freepik.com/premium-photo/adorable-black-petit-brabancon-dog-white-background_495423-57719.jpg',
+    briard: 'https://thumbs.dreamstime.com/b/briard-dog-14-months-old-sitting-15357985.jpg',
+    buhund: 'https://basepaws.com/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2F7hqiona4456t%2F5GZWQe2eINCNsUPRbmzpA%2F8caeb39c05e05078e7580174077c3454%2FNorwegian_Buhund_1000.jpg&w=1080&q=75',
+    bulldog: 'https://media.istockphoto.com/id/177029785/photo/english-bulldog.jpg?s=612x612&w=0&k=20&c=bL4x_TBwCRqw-8oqA64Qr_10uw5cdSXqx5pAgO7ErbU=',
+    bullterrier: 'https://t3.ftcdn.net/jpg/00/61/77/18/360_F_61771840_adlOK1hb04djVSfqkyQiLeRzmDrWjf2A.jpg',
+    cairn: 'https://www.warrenphotographic.co.uk/photography/bigs/42899-Cairn-Terrier-white-background.jpg',
+    cattledog: 'https://www.shutterstock.com/image-photo/sweet-cattle-dog-puppy-laying-600nw-2201218719.jpg',
+    chihuahua: 'https://www.shutterstock.com/image-photo/studio-shot-adorable-chihuahua-puppy-600nw-777196294.jpg',
+    chow: 'https://as1.ftcdn.net/v2/jpg/00/41/20/82/1000_F_41208252_XEvLjCmz7jsFsHMdLUMWTYfEOWOuhsO4.jpg',
+    clumber: 'https://thumbs.dreamstime.com/b/clumber-spaniel-pup-white-background-cute-clumber-spaniel-dog-pup-laying-down-facing-front-looking-towards-camera-227520278.jpg',
+    cockapoo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ45mjdv9czwlvwm4npfHW2fPWGyAUy8EFJOP9BVnM5rA&s',
+    collie: 'https://t4.ftcdn.net/jpg/00/26/53/29/360_F_26532967_o2fdJj1Z6Y5z3tWH3rJ6Gbuj5gANcJyG.jpg',
+    coonhound: 'https://www.shutterstock.com/image-photo/friendly-dog-sitting-while-looking-600nw-2320404215.jpg',
+    corgi: 'https://t3.ftcdn.net/jpg/02/42/25/56/360_F_242255661_hKBYeEyTX0LsdKOx6FZe9crDsg0MV3n3.jpg',
+    cotondetulear: 'https://topdogtips.com/wp-content/uploads/2022/11/coton-de-tulear-featured-image-1021x580.jpg',
+    dachshund: 'https://t4.ftcdn.net/jpg/01/78/58/01/360_F_178580169_qkZHs7SC7KbovezFDiRbxIEmsAmKSBn8.jpg',
+    dalmatian: 'https://t4.ftcdn.net/jpg/00/63/64/11/360_F_63641115_pNDNXZzASj7JZLc56PF0jrC8tCvYNcb3.jpg',
+    dane: 'https://as1.ftcdn.net/v2/jpg/02/09/84/02/1000_F_209840249_mUm4UpAPgoB4bGBN05RWgqhyNYSeCc6p.jpg',
+    deerhound: 'https://i.pinimg.com/564x/7d/1d/db/7d1ddb9a87d97d61e54afde74f127f87.jpg',
+    dhole: 'https://img.freepik.com/premium-photo/asiatic-wild-dog-dhole-white-background_917664-80225.jpg',
+    dingo: 'https://t4.ftcdn.net/jpg/06/07/30/41/360_F_607304191_i71Nm0tuZQbBza9IuCfFXhl8V5mpAD09.jpg',
+    doberman: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAHNUozx6eQZSVV17X9sNkZnTft3K1cWb-P0j3SKDReg&s',
+    elkhound: 'https://www.purina.co.nz/sites/default/files/styles/ttt_image_510/public/2021-08/norwegian-elkhound.jpg?itok=PF05PN3R',
+    entlebucher: 'https://media.istockphoto.com/id/1273386815/photo/great-swiss-mountain-dog-lying-down-seen-from-the-front-looking-up-isolated-on-a-white.jpg?s=612x612&w=0&k=20&c=l6FhcdLhqfsjHl5jybtaA8b26FnHtKqG8yIHY_O9dW4=',
+    eskimo: 'https://www.purina.co.nz/sites/default/files/styles/ttt_image_510/public/2021-07/american-eskimo-70p.jpg?itok=Mm70AC0V',
+    finnish: 'https://img.freepik.com/premium-photo/finnish-lapphund-front-white-background_87557-24930.jpg',
+    frise: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx9q3XMm2hsR762vNDgtA3dqnicQN0USu7bvtYFjrDmg&s',
+    germanshepherd: 'https://t4.ftcdn.net/jpg/03/19/71/83/360_F_319718378_SRLQpUt7mFBipNFpp4dBnIzo45X3vA7E.jpg',
+    greyhound: 'https://img.freepik.com/premium-photo/cute-italian-greyhound-dog-white-background_495423-29295.jpg',
+    groenendael: 'https://img.freepik.com/premium-photo/puppy-groenendael-dog-front-white-background_87557-17215.jpg',
+    havanese: 'https://t3.ftcdn.net/jpg/02/77/36/76/360_F_277367689_FVHbjo7OYvdhbEu3OmfiFkWcMiwZY7fd.jpg',
+    hound: 'https://t3.ftcdn.net/jpg/00/97/57/56/360_F_97575661_w1Tu37Lgcd2e01bzgIgUj3iCKhDHwqZj.webp',
+    husky: 'https://t4.ftcdn.net/jpg/02/37/35/67/360_F_237356774_i0TDC4Tq2MX1c1LqUMPuPRuQMdFMoR6N.jpg',
+    keeshond: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgg6_9fbUixDBvrl2hqDm7-S7G0rktUue_u9O5CuPC_g&s',
+    kelpie: 'https://img.freepik.com/premium-photo/australian-kelpie-with-white-background_871710-209.jpg',
+    komondor: 'https://www.purina.co.nz/sites/default/files/styles/ttt_image_510/public/2021-02/BREED%20Hero%20Mobile_0079_komondor.jpg?itok=dBPh45bm',
+    kuvasz: 'https://i.pinimg.com/736x/4a/2d/3c/4a2d3cc0f303d92d6a1368a4a3a5ff03.jpg',
+    labrador: 'https://thumbs.dreamstime.com/b/yellow-labrador-retriever-standing-white-background-146862691.jpg',
+    leonberg: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuZIaqGvE94yXBrIdmRmSDN0G80EnpwTzp0_TOtlEqjw&s',
+    malinois: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFlDgIQhWQwXuPeCN8yZo2epRROV-oTWf3iVxEYMV7cQ&s',
+    maltese: 'https://static.vecteezy.com/system/resources/previews/029/866/943/large_2x/of-a-maltese-dog-using-eyeglasses-isolated-on-white-background-generative-ai-photo.jpg',
+    mastiff: 'https://as2.ftcdn.net/v2/jpg/00/36/28/11/1000_F_36281155_qLr9zP3f8NztP2gUm7YxYt6IpzXRsU9Y.jpg',
+    mexicanhairless: 'https://www.purina-arabia.com/sites/default/files/styles/ttt_image_510/public/2021-02/BREED%20Hero%20Mobile_0068_mexican_hairless_dog.jpg?itok=RsD-atUa',
+    mix: 'https://media.istockphoto.com/id/1369946698/photo/happy-smiling-face-of-mongrel-dog-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=-egUrwIZ-AjQodQ7UtHI8XGur-xCQs72HSPqwCq0-rg=',
+    mountain: 'https://t3.ftcdn.net/jpg/01/39/63/02/360_F_139630240_9dcSZcbgYrTlP2HVmqyuqaEMJI7Id4ac.jpg',
+    newfoundland: 'https://a-z-animals.com/media/newfoundland-isolated.jpg',
+    otterhound: 'https://www.akc.org/wp-content/uploads/2017/11/Otterhound-On-White-03.jpg',
+    ovcharka: 'https://t4.ftcdn.net/jpg/00/61/73/57/360_F_61735723_i8qzLfjPv9MCC2MtZaqjLXaY4WtF5Q3e.jpg',
+    papillon: 'https://as2.ftcdn.net/v2/jpg/02/43/31/89/1000_F_243318994_fLYMlIDIdZXhYrXR3LUzSyq1fb1tnYIJ.jpg',
+    pekinese: 'https://www.mediastorehouse.com.au/p/172/dog-pekingese-puppy-studio-8133999.jpg.webp',
+    pembroke: 'https://dogtime.com/wp-content/uploads/sites/12/2011/01/GettyImages-1193591781.jpg?resize=1200,630',
+    pinscher: 'https://img.freepik.com/premium-photo/miniature-pinscher-dog-white-background_87557-14706.jpg',
+    pitbull: 'https://t4.ftcdn.net/jpg/01/74/39/33/360_F_174393367_kt4rzd90dmcgpw3zgJtZTxCWhnUSuYlV.jpg',
+    pointer: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0G-h4eLzoFacuKA54d2jlJAppDV3X57HVaoFmo4pgiA&s',
+    pomeranian: 'https://media.istockphoto.com/id/499641457/photo/white-pomeranian-puppy-dog.jpg?s=170667a&w=0&k=20&c=sMTv4HmH-65aQj1jG9wM5Ea6yV6jIc9HhmxDNL0OKEk=',
+    poodle: 'https://www.akc.org/wp-content/uploads/2018/04/Toy-Poodle-on-White-02-400x267.jpg',
+    pug: 'https://i.pinimg.com/736x/a6/9f/2c/a69f2c61680f0489871e3d436ea6abaa.jpg',
+    puggle: 'https://i.pinimg.com/736x/a6/9f/2c/a69f2c61680f0489871e3d436ea6abaa.jpg',
+    pyrenees: 'https://t4.ftcdn.net/jpg/05/88/19/47/360_F_588194784_V93bgnln9Bj2Re6NuzMf3Tm5W0DBJLJd.jpg',
+    redbone: 'https://t4.ftcdn.net/jpg/06/71/83/09/360_F_671830956_jsdavlddwEAq4NKIfdubojmTZ7FLGze3.jpg',
+    retriever: 'https://t3.ftcdn.net/jpg/01/40/26/70/360_F_140267021_R9IQiNnXTnUgqVTK253xHzDFyJJPU3tm.jpg',
+    ridgeback: 'https://as2.ftcdn.net/v2/jpg/01/35/50/05/1000_F_135500542_mSDBMsG3MYpxcqb08ZMjmLctjM0dCHZo.jpg',
+    rottweiler: 'https://www.akc.org/wp-content/uploads/2017/11/Rottweiler-On-White-10-400x267.jpg',
+    saluki: 'https://t3.ftcdn.net/jpg/04/32/14/90/360_F_432149028_25qC7Zuntr10a5oxExFlq4MbcC7dT9tL.jpg',
+    samoyed: 'https://st2.depositphotos.com/1606449/5659/i/950/depositphotos_56592719-stock-photo-gorgeous-samoyed-dog-sitting.jpg',
+    schipperke: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4APmYc8pTIBLKo0Yv--13RDwbYwM1hL0Raj3KdjHbMA&s',
+    schnauzer: 'https://t4.ftcdn.net/jpg/00/71/49/47/360_F_71494773_fgSqPXaTA6a6BT392juj2v8zGmTLprsL.jpg',
+    setter: 'https://thumbs.dreamstime.com/b/english-setter-17958950.jpg',
+    sheepdog: 'https://t3.ftcdn.net/jpg/05/88/20/34/360_F_588203453_agEsDzNHKMyrEiU1Lt8Nlt1xKVM3HArj.jpg',
+    shiba: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUBpTnn0Pl25qX38FTYhAiXXMm99EMpV6H1wDDrezJUA&s',
+    shihtzu: 'https://as1.ftcdn.net/v2/jpg/00/71/49/48/1000_F_71494866_UnjRUucZRcqVGC9UBUZkdqUG7BfHrIMB.jpg',
+    spaniel: 'https://media.istockphoto.com/id/1341818129/photo/cute-and-sweet-cocker-spaniel-dog-with-tongue-sticking-out-sitting-isolated-over-white.jpg?s=612x612&w=0&k=20&c=rzmP7ttYUTxqOASihtB4P0r2_mhf365NawPVtwuItow=',
+    spitz: 'https://media.istockphoto.com/id/625270888/photo/puppy-spitz-dog.jpg?s=612x612&w=0&k=20&c=QypzrfXegzm2wgC1EEl1eAW_DPqKaKngGrU7D_0ImOU=',
+    terrier: 'https://www.shutterstock.com/image-photo/studio-shot-adorable-boston-terrier-600nw-1137185129.jpg',
+    vizsla: 'https://as2.ftcdn.net/v2/jpg/02/44/95/59/1000_F_244955952_VSkRP536tpfTEMyKiVYw8xok9r7ns0wD.jpg',
+    weimaraner: 'https://t3.ftcdn.net/jpg/02/43/85/68/360_F_243856814_G8UMBKw8t5QbBodW953cS5Pfhxjs9WMF.jpg',
+    whippet: 'https://img.freepik.com/premium-photo/graceful-whippet-dog-white-background-displaying-breed-s-elegance-athleticism_826582-2514.jpg',
+    yorkshire: 'https://img.freepik.com/premium-photo/little-yorkshire-terrier-puppy-isolated-white-background_178193-615.jpg',
+    labradoodle: 'https://t3.ftcdn.net/jpg/02/66/91/88/360_F_266918856_cyA8Mpi5DZL74QKALLZCKoBotcxjaBl2.jpg',
+    segugio: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiIB1nzPbU6ProDxpW9N7VP8lxzBC8zi6A0ayo3gjuYA&s',
+    sharpei: 'https://media.istockphoto.com/id/147008645/photo/sad-little-sharpei-puppy.jpg?s=612x612&w=0&k=20&c=JabaiQg7gmzQGt_lvTkA1UVnx-Qia1-5dRIkH6Yr3Bw=',
+    tervuren:'https://img.freepik.com/premium-photo/belgian-tervuren-dog-white-background-generative-ai_918839-9380.jpg',
+    springer:'https://images.ctfassets.net/4cuokmrwdiqv/5rvt1vtxf1IXjGSdmDeROh/14624fc5cdeb4b8accb4b3d049ea32ad/Spaniel-Breeds-Kooikerhondje.jpg',
+    wolfhound:'https://www.hundeo.com/wp-content/uploads/2019/10/Irischer-Wolfshund-Hunderasse-Profilbild.jpg',
+    stbernard:'https://t3.ftcdn.net/jpg/00/13/74/14/360_F_13741443_0bxeqjgJwMvgfEI6giBlBQZ5w2jH7V6y.jpg',
+    waterdog:'https://t3.ftcdn.net/jpg/06/42/43/38/360_F_642433882_QB75ifETZXdRP1bbAVIwd8wA1oAo8r5a.jpg'
+
+    };
+
+    document.getElementById('searchInput').addEventListener('input', function (event) {
+        const searchValue = event.target.value.toLowerCase();
+        const breedItems = document.querySelectorAll('.breed-item');
+
+        breedItems.forEach(item => {
+            const breedName = item.lastChild.textContent.toLowerCase();
+
+            if (breedName.includes(searchValue)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+</script>
