@@ -1,4 +1,4 @@
-# I_LOVE_DOGS_
+# I_LOVE_DOGS
 Вебсайт для любителей собак
 
 # Функциональность
@@ -16,11 +16,11 @@
 1. Клонируйте репозиторий на ваше устройство:
 
    ```bash
-   git clone https://github.com/jans-saya/I_LOVE_DOGS_.git
+   git clone https://github.com/jans-saya/I_LOVE_DOGS.git
 
 2. Перейдите в директорию проекта:
 3. ```bash
-   cd I_LOVE_DOGS_
+   cd I_LOVE_DOGS
 
 4. Откройте сайт
   Для Windows:
