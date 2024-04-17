@@ -34,6 +34,7 @@
    cd I_LOVE_DOGS
 
 4. Откройте сайт
+   
   Для Windows:
       
          start index.html
