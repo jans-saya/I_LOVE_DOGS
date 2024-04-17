@@ -22,7 +22,7 @@
 3. ```bash
    cd I_LOVE_DOGS_
 
-4.
+4. Откройте сайт
   Для Windows:
       
          start index.html
