@@ -20,7 +20,7 @@
 
 2. Перейдите в директорию проекта:
 3. ```bash
-   cd I_love_dogs
+   cd I_LOVE_DOGS_
 
 4.
   Для Windows:
