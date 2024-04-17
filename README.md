@@ -16,7 +16,7 @@
 1. Клонируйте репозиторий на ваше устройство:
 
    ```bash
-   git clone https://github.com/jans-saya/I_love_dogs.git
+   git clone https://github.com/jans-saya/I_LOVE_DOGS_.git
 
 2. Перейдите в директорию проекта:
 3. ```bash
